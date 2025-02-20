@@ -11,6 +11,9 @@ export const decksAPI = {
   getDecks() {
     return instance.get<FetchDecksType>('/v2/decks')
   },
+  addDeck(name: string){
+    return instance.post<PostResponseDeskType>('/v1/decks', {name})
+  }
 }
 
 
@@ -20,6 +23,7 @@ export type AuthorType = {
   name: string
 }
 
+// Тип для элемента в массиве items
 export type DecksItems = {
   isFavorite?: boolean
   author: AuthorType
@@ -31,6 +35,17 @@ export type DecksItems = {
   created: string // или можно использовать тип Date, если будем преобразовывать строку в дату
   updated: string // аналогично, можно использовать Date
   cardsCount?: number
+}
+export type PostResponseDeskType= {
+  id: string,
+  userId: string,
+  name: string,
+  isPrivate: boolean,
+  cover: string,
+  created: string,
+  updated: string,
+  cardsCount: number
+  author: AuthorType;
 }
 
 // Тип для пагинации

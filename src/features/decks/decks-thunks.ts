@@ -1,4 +1,4 @@
-import { setDecksAC } from './decks-reducer.ts'
+import { addDeckAC, setDecksAC } from './decks-reducer.ts'
 import { AppDispatch } from '../../app/store.ts'
 import { decksAPI } from './decks-api.ts'
 
@@ -7,3 +7,9 @@ export const fetchDecksTC = ()=>(dispatch: AppDispatch)=>{
     dispatch(setDecksAC(res.data.items)) // Диспатчим данные в хранилище
   })
 }
+
+export const addDeckTC = (name: string) => (dispatch: AppDispatch) => {
+  decksAPI.addDeck(name).then((res) => {
+    dispatch(addDeckAC(res.data)); // Диспатчим новую колоду
+  });
+};
