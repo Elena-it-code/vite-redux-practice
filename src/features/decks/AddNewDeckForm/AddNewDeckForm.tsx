@@ -15,6 +15,7 @@ export const AddNewDeckForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormValues>({
     defaultValues: {
       name: '',
@@ -23,7 +24,10 @@ export const AddNewDeckForm = () => {
 
   const onSubmit = (data: FormValues) => {
     //console.log(data)
-    dispatch(addDeckTC(data.name)) // Диспатчим добавление новой колоды
+    dispatch(addDeckTC(data.name)).then(()=>{ // Диспатчим добавление новой колоды
+      reset() // очищает наш инпут после успешного добавления колоды
+    })
+
   }
 
   return (

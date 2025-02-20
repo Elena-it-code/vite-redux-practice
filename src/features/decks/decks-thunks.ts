@@ -8,8 +8,8 @@ export const fetchDecksTC = ()=>(dispatch: AppDispatch)=>{
   })
 }
 
-export const addDeckTC = (name: string) => (dispatch: AppDispatch) => {
-  decksAPI.addDeck(name).then((res) => {
+export const addDeckTC = (name: string) => async (dispatch: AppDispatch) => {
+  return decksAPI.addDeck(name).then((res) => {
     dispatch(addDeckAC(res.data)); // Диспатчим новую колоду
   });
 };
